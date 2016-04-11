@@ -3,6 +3,7 @@ todoVue = new Vue({
   data: {
     newTodo: { name: '', description: '', date: '', completed: false },
     todos: [],
+    completedHidden: false
   },
   ready: function() { 
     console.log('Page ready');
