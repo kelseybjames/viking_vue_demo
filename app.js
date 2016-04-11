@@ -1,18 +1,27 @@
-new Vue({
+todoVue = new Vue({
   el: '#todos',
   data: {
-    todo: { name: '', description: '', date: '' },
-    todos: []
+    newTodo: { name: '', description: '', date: '', completed: false },
+    todos: [],
   },
   ready: function() { 
     console.log('Page ready');
   },
   methods: {
-    addTodo: function() {
-      if(this.todo.name) {
-        this.todos.push(this.todo);
-        this.todo = { name: '', description: '', date: '' };
+    addTodo: function(event) {
+      if(this.newTodo.name) {
+        this.todos.push(this.newTodo);
+        this.newTodo = { name: '', description: '', date: '', completed: false };
       }
+    },
+    deleteTodo: function(index) {
+      this.todos.splice(index, 1);
+    },
+    todoIncomplete: function(todo) {
+      return !todo.completed;
+    },
+    clearCompleted: function() {     
+      this.todos = this.todos.filter(this.todoIncomplete);
     }
-  } // methods we want to use in our app
+  }
 });
